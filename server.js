@@ -12,7 +12,7 @@ const bodyParser = require("body-parser");
 const app = express();
 
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 // Middleware 
 // *************************
@@ -21,7 +21,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.use(express.json());
 
-// 
+// Static directory
 app.use(express.static("public"));
 
 // app.use(express.json({limit: '50mb'}));
@@ -32,7 +32,7 @@ if (process.env.NODE_ENV === "production") {
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-app.use(express.static(path.join(__dirname, '..', 'public'))) 
+// app.use(express.static(path.join(__dirname, '..', 'public'))) 
 
 
 // Start the API server
