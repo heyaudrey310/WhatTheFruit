@@ -1,72 +1,76 @@
-import React from "react";
+import React, { Component }from "react";
+import App from '../index.css'
 
-function Home() {
-    return (
-        <div className="container">
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <a className="navbar-brand" href="#">
-                    What The Fruit
-                </a>
-                <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav mr-auto">
-                        <li className="nav-item active">
-                            <a className="nav-link" href="#">
-                                Home <span className="sr-only">(current)</span>
-                            </a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">
-                                Link
-                            </a>
-                        </li>
-                        <li className="nav-item dropdown">
-                            <a
-                                className="nav-link dropdown-toggle"
-                                href="#"
-                                id="navbarDropdown"
-                                role="button"
-                                data-toggle="dropdown"
-                                aria-haspopup="true"
-                                aria-expanded="false"
-                            >
-                                Dropdown
-                            </a>
-                            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a className="dropdown-item" href="#">
-                                    Action
-                                </a>
-                                <a className="dropdown-item" href="#">
-                                    Another action
-                                </a>
-                                <div className="dropdown-divider" />
-                                <a className="dropdown-item" href="#">
-                                    Something else here
-                                </a>
-                            </div>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link disabled" href="#">
-                                Disabled
-                            </a>
-                        </li>
-                    </ul>
-                    <form className="form-inline my-2 my-lg-0">
-                        <input
-                            className="form-control mr-sm-2"
-                            type="search"
-                            placeholder="Search"
-                            aria-label="Search"
-                        />
-                        <button className="btn btn-outline-success my-2 my-sm-0" type="submit">
-                            Search
-                        </button>
-                    </form>
-                </div>
-            </nav>
+class Home extends React.Component {
 
-        {/* < Camera />      */}
-        </div>
-    );
+    render() {
+        return (
+            < Navbar/>
+        )
+    }
 }
 
-export default Home; 
+// Navbar 
+
+class Navbar extends React.Component {
+
+    constructor (props) {
+        super(props)
+
+        this.state = {
+            activeItem: '',
+            activeItemPosition: 0,
+            activeItemColor: '',
+            menuItems: [
+                { text: 'Home' }, 
+                { text: 'Take a Picture' },
+                { text: 'Fresh List' },
+                { text: 'About' }, 
+            ],
+        }
+
+        this.handleClick = this.handleClick.bind(this)
+    }
+
+        handleClick(activeItem) {
+            return e => {
+                e.preventDfault() 
+                
+                this.setState({
+                    activeItem,
+                    activeItemPosition: 
+                        (document.getElementById(activeItem))
+                            .getPropertyValue('background-color'),
+                })
+            }
+        }
+
+        render(){
+            const menuItems = this.state.menuItems.map
+                // (item => <MenuItem item= {item} handleClick={this.handleClick}/>)
+
+                return (
+                    <div className="navbar">
+                        <span className="menu-item-active" style={{top:
+                            this.state.activeItemPosition, backgroundColor:
+                            this.state.activeItemColor}}/> 
+                            {menuItems}
+                    </div>
+                )
+        }
+
+    
+}
+
+ // Navbar Items 
+ function menuItems(props) {
+    return (
+        <div 
+            className="menu-item"
+            id={props.item.text}
+            onClick={props.handleClick(props.item.text)}
+            >
+            {props.item.text.toUpperCase()}
+            </div>
+    )
+}

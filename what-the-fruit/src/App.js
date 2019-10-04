@@ -44,6 +44,11 @@ export default class App extends React.Component {
           onCameraStop = { () => { this.onCameraStop(); } }
         />
       </div>
+
+    
+
     );
   }
+
+  
 }
